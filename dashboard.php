@@ -1,0 +1,115 @@
+<?php
+session_start();
+
+// Check if the user is not logged in, redirect to the login page
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Logout functionality
+if (isset($_POST["logout"])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+?>
+<?php
+// Define the database credentials
+$host = "localhost";
+$database = "MCQ";
+$username = "root";
+$password = "";
+
+// Connect to the database
+$conn = new mysqli($host, $username, $password, $database);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+<?php
+
+include 'mcq.php';
+// Process the form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize the score
+    $score = 0;
+
+    // Check each answer and calculate the score
+    for ($i = 0; $i < count($questions); $i++) {
+        $answer = $_POST["q" . $i];
+        if ($answer == array_search("Hypertext Preprocessor", $options[$i])) {
+            $score++;
+        }
+    }
+
+    // Store the data in the database
+    $name = $_SESSION["username"];
+    $year = $_SESSION["year"];
+
+    $sql = "INSERT INTO quiz_results (name, year, score) VALUES ('$name', '$year', '$score')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "you would be notified about the results very soon.";
+        echo "<br>";
+        echo "make sure to logout before leaving the arena ";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    // Close the database connection
+    $conn->close();
+    echo '<form method="post" action="">';
+    echo '    <button type="submit" name="logout">Log Out</button>';
+    echo '</form>';
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Quiz</title>
+</head>
+<body>
+<script>
+        let chance = 2
+        // Add focus change event listener
+        window.addEventListener('blur', function() {
+            // Redirect to logout when the window loses focus
+            chance--;
+            if (chance<=0){
+                window.location.href = 'logout.php';    
+            }
+        });
+
+        // Maximize the window for fullscreen-like experience
+        // window.onload = function() {
+        //     document.documentElement.requestFullscreen();
+        // };
+    </script>
+
+    <h1>Welcome to the Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+    <h1>Round 1 Quiz Round</h1>     
+    
+    <form method="post" action="">
+        <?php for ($i = 0; $i < count($questions); $i++): ?>
+            <p><strong><?php echo ($i + 1) . ". " . $questions[$i]; ?></strong></p>
+            <?php foreach ($options[$i] as $key => $option): ?>
+                <label>
+                    <input type="radio" name="q<?php echo $i; ?>" value="<?php echo $key; ?>" required>
+                    <?php echo $option; ?>
+                </label><br>
+            <?php endforeach; ?>
+        <?php endfor; ?>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
