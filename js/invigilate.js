@@ -10,6 +10,6 @@ window.addEventListener("blur", function () {
 });
 
 // Maximize the window for fullscreen-like experience
-// window.onload = function() {
-//     document.documentElement.requestFullscreen();
+// window.onload = function () {
+//   document.documentElement.requestFullscreen();
 // };

@@ -89,27 +89,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <script src="../js/invigilate.js"></script>
     <?php include_once "header.php"; ?>
-    <h1>Welcome to Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+    <div class="profile">
+        <div class="pro_img">
+            <img src="https://robohash.org/<?php echo $_SESSION["username"] ?>" alt="profile">
+        </div>
+        <p><?php echo htmlspecialchars($_SESSION["username"]); ?></p>
+    </div>
+
     <center><h1>Round 1 Quiz Round</h1></center>     
     
     <form id = "myForm" method="post" action="">
-        <?php for ($i = 0; $i < count($questions); $i++): ?>
-            <div class="card">
-            <p><strong><?php echo ($i + 1) . ". " . $questions[$i]; ?></strong></p>
-            <?php foreach ($options[$i] as $key => $option): ?>
+    <?php 
+        for ($i = 0; $i < count($shuffledQuestions); $i++):
+    ?>
+    <div class="card">
+        <p style="margin-bottom:5px"><strong><?php echo ($i + 1) . ". " . $shuffledQuestions[$i]; ?></strong></p>
+        <?php // Shuffle the options for each question
+            shuffle($shuffledOptions[$i]);
+            foreach ($shuffledOptions[$i] as $key => $option): ?>
                 
-                <div class="card-content container">
+            <div class="card-content container">
                 <label> 
                     <input type="radio" name="q<?php echo $i; ?>" value="<?php echo $key; ?>" required>
                     <span></span>
                     <?php echo $option; ?>
                 </label><br>
-                </div>
-                
-            <?php endforeach; ?>
             </div>
-        <?php endfor; ?>
-
+            
+        <?php endforeach; ?>
+    </div>
+    <?php endfor; ?>
         <center><button class="button" id = "subbtn"type="submit"><span>Submit</span></button></center>
     </form>     
     <?php include "footer.php"; ?>
