@@ -62,27 +62,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Quiz</title>
+    <link rel="stylesheet" href="../assets/css/util.css">
+    <style>
+        body {
+            <?php
+                $year = $_SESSION["year"];
+                switch ($year) {
+                    case 1:
+                        echo 'background-color: #ff9999;'; // Year 1 color
+                        break;
+                    case 2:
+                        echo 'background-color: #99ff99;'; // Year 2 color
+                        break;
+                    case 3:
+                        echo 'background-color: #9999ff;'; // Year 3 color
+                        break;
+                    default:
+                        echo 'background-color: #ffffff;'; // Default color
+                }
+            ?>
+        }
+    </style>
+    <title>Round 1 Quiz Round</title>
+
 </head>
 <body>
     <script src="../js/invigilate.js"></script>
     <?php include_once "header.php"; ?>
     <h1>Welcome to Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
-    <h1>Round 1 Quiz Round</h1>     
+    <center><h1>Round 1 Quiz Round</h1></center>     
     
     <form id = "myForm" method="post" action="">
         <?php for ($i = 0; $i < count($questions); $i++): ?>
+            <div class="card">
             <p><strong><?php echo ($i + 1) . ". " . $questions[$i]; ?></strong></p>
             <?php foreach ($options[$i] as $key => $option): ?>
-                <label>
+                
+                <div class="card-content container">
+                <label> 
                     <input type="radio" name="q<?php echo $i; ?>" value="<?php echo $key; ?>" required>
+                    <span></span>
                     <?php echo $option; ?>
                 </label><br>
+                </div>
+                
             <?php endforeach; ?>
+            </div>
         <?php endfor; ?>
 
-        <button id = "subbtn"type="submit">Submit</button>
-    </form>
+        <center><button class="button" id = "subbtn"type="submit"><span>Submit</span></button></center>
+    </form>     
     <?php include "footer.php"; ?>
 </body>
 </html>

@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Check if the user is already logged in and redirect to the dashboard
 if (isset($_SESSION["username"])) {
-    header("Location: dashboard.php");
+    header("Location: modules/dashboard.php");
     exit();
 }
 ?>
