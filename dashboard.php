@@ -15,21 +15,8 @@ if (isset($_POST["logout"])) {
     exit();
 }
 ?>
-<?php
-// Define the database credentials
-$host = "localhost";
-$database = "MCQ";
-$username = "root";
-$password = "";
 
-// Connect to the database
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
+<?php include_once "modules/config.php";?>
 
 <?php
 
@@ -78,22 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>PHP Quiz</title>
 </head>
 <body>
-<script>
-        let chance = 2
-        // Add focus change event listener
-        window.addEventListener('blur', function() {
-            // Redirect to logout when the window loses focus
-            chance--;
-            if (chance<=0){
-                window.location.href = 'logout.php';    
-            }
-        });
-
-        // Maximize the window for fullscreen-like experience
-        // window.onload = function() {
-        //     document.documentElement.requestFullscreen();
-        // };
-    </script>
+    <script src="./js/invigilate.js"></script>
 
     <h1>Welcome to the Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
     <h1>Round 1 Quiz Round</h1>     
