@@ -1,35 +1,4 @@
-<?php
-session_start();
-
-// Dummy user credentials (replace with your authentication logic)
-$validUsername = "u";
-$validPassword = "p";
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate user credentials (in a real application, you would check against a database)
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $year = $_POST["year"];
-
-    if ($username == $validUsername && $password == $validPassword) {
-        // User authentication successful
-        $_SESSION["username"] = $username;
-        $_SESSION["year"] = $year;
-        header("Location: dashboard.php");
-        exit();
-    } else {
-        $error_message = "Invalid username or password.";
-    }
-}
-
-// Check if the user is already logged in and redirect to the dashboard
-if (isset($_SESSION["username"])) {
-    header("Location: dashboard.php");
-    exit();
-}
-?>
-
+<?php include_once "modules/handleLogin.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +7,7 @@ if (isset($_SESSION["username"])) {
     <title>Login Page</title>
 </head>
 <body>
+    <?php include_once "modules/header.php"; ?>
     <h1>Login Page</h1>
     
     <?php
@@ -47,9 +17,9 @@ if (isset($_SESSION["username"])) {
     }
     ?>
 
-    <form method="post" action="">
+    <form autocomplete="off" method="post" action="">
         <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+        <input autocomplete="false" type="text" name="username" required><br>
 
         <label for="year">Year:</label>
         <select name="year" required>
@@ -66,5 +36,6 @@ if (isset($_SESSION["username"])) {
 
         <button type="submit">Log In</button>
     </form>
+    <?php include_once "modules/footer.php"; ?>
 </body>
 </html>

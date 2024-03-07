@@ -11,12 +11,12 @@ if (!isset($_SESSION["username"])) {
 if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
 
-<?php include_once "modules/config.php";?>
+<?php include_once "config.php";?>
 
 <?php
 
@@ -65,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>PHP Quiz</title>
 </head>
 <body>
-    <script src="./js/invigilate.js"></script>
-
-    <h1>Welcome to the Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+    <script src="../js/invigilate.js"></script>
+    <?php include_once "header.php"; ?>
+    <h1>Welcome to Code Mania, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
     <h1>Round 1 Quiz Round</h1>     
     
-    <form method="post" action="">
+    <form id = "myForm" method="post" action="">
         <?php for ($i = 0; $i < count($questions); $i++): ?>
             <p><strong><?php echo ($i + 1) . ". " . $questions[$i]; ?></strong></p>
             <?php foreach ($options[$i] as $key => $option): ?>
@@ -81,7 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endforeach; ?>
         <?php endfor; ?>
 
-        <button type="submit">Submit</button>
+        <button id = "subbtn"type="submit">Submit</button>
     </form>
+    <?php include "footer.php"; ?>
 </body>
 </html>
