@@ -19,7 +19,6 @@ if (isset($_POST["logout"])) {
 <?php include_once "config.php";?>
 
 <?php
-
 include 'mcq.php';
 // Process the form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $score = 0;
 
     // Check each answer and calculate the score
-    for ($i = 0; $i < count($questions); $i++) {
+    for ($i = 0; $i < count($shuffledQuestions); $i++) {
         $answer = $_POST["q" . $i];
-        if ($answer == array_search("Hypertext Preprocessor", $options[$i])) {
+        if ($answer == array_search("Hypertext Preprocessor", $shuffledOptions[$i])) {
             $score++;
         }
     }
@@ -37,22 +36,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Store the data in the database
     $name = $_SESSION["username"];
     $year = $_SESSION["year"];
+    $time_taken = $_POST["t"];
 
-    $sql = "INSERT INTO quiz_results (name, year, score) VALUES ('$name', '$year', '$score')";
+    $sql = "INSERT INTO quiz_results (name, year, score,timeTaken) VALUES ('$name', '$year', '$score','$time_taken')";
     
     if ($conn->query($sql) === TRUE) {
-        echo "you would be notified about the results very soon.";
+        include_once "header.php";
+        echo "<center>";
+        echo "<h3>you would be notified about the results very soon.</h3>";
         echo "<br>";
-        echo "make sure to logout before leaving the arena ";
+        echo "<h3>make sure to logout before leaving the arena. </h3><br><br>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     // Close the database connection
     $conn->close();
+    include_once "logoutbtn.php";
     echo '<form method="post" action="">';
-    echo '    <button type="submit" name="logout">Log Out</button>';
+    echo '    <button class="button2 type1" type="submit" name="logout">Log Out</button>';
     echo '</form>';
+    echo "</center>";
+    include_once "footer.php";
     exit();
 }
 ?>
@@ -88,7 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <script src="../js/invigilate.js"></script>
+    <script src="../js/index.js"></script>
     <?php include_once "header.php"; ?>
+    <div id="timer"></div>
     <div class="profile">
         <div class="pro_img">
             <img src="https://robohash.org/<?php echo $_SESSION["username"] ?>" alt="profile">
@@ -99,8 +106,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <center><h1>Round 1 Quiz Round</h1></center>     
     
     <form id = "myForm" method="post" action="">
+    <input hidden name="t" type="text" id="timerInput" value="00:00:00" readonly>
     <?php 
-        for ($i = 0; $i < count($shuffledQuestions); $i++):
+    
+        $maxQuestionsToShow =15;    
+        for ($i = 0; $i < min($maxQuestionsToShow, count($shuffledQuestions)); $i++):
     ?>
     <div class="card">
         <p style="margin-bottom:5px"><strong><?php echo ($i + 1) . ". " . $shuffledQuestions[$i]; ?></strong></p>
@@ -121,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endfor; ?>
         <center><button class="button" id = "subbtn"type="submit"><span>Submit</span></button></center>
     </form>     
-    <?php include "footer.php"; ?>
+    <?php 
+    include "footer.php"; ?>
 </body>
 </html>

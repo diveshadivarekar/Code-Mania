@@ -73,14 +73,30 @@ main::after {
   height: 100%;
 } */
 
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: table;
+} 
 footer {
+  display: table-row;
+  vertical-align:middle;
+  height: 10vh;
+  clear: both;
+  /* position: relative; */
+  /* position: absolute; */
+  /* left: 0;
+  bottom: 0; */
   background: #dddee1;
   padding: 5vh 0;
   text-align: center;
-  position: relative;
+  width:100%;
+  margin-top:100px;
+  /* position: relative; */
 }
 footer p{
-    margin-top:auto;
+    margin-top:calc(5vh - 1em);
 }
 
 small {

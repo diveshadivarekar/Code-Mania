@@ -5,6 +5,7 @@ session_start();
 // $validUsername = "u";
 // $validPassword = "p";
 $validPassword = array("apple", "banana", "cherry", "date");
+$validPassword2 = array("orange");
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Remove the value from the array
         array_splice($validPassword, $key, 1);
           // Display the updated array
-        print_r($validPassword);
+        // print_r($validPassword);
 
 
         // User authentication successful
@@ -30,7 +31,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["year"] = $year;
         header("Location: modules/dashboard.php");
         exit();
-    } else {
+    }
+    elseif(in_array($password, $validPassword2)){
+        // User authentication successful
+        $_SESSION["username"] = $username;
+        $_SESSION["year"] = $year;
+        header("Location: modules/program.php");
+        exit();
+    }
+    else {
         $error_message = "Invalid username or password.";
     }
 }

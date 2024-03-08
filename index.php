@@ -23,7 +23,7 @@
         <form autocomplete="off" method="post" action="">
             <div class="form_group">
                 <label class="sub_title" for="username">Name</label>
-                <input autocomplete="false" name="username" placeholder="Enter your full name" class="form_style" type="text" required>
+                <input autocomplete="off" name="username" placeholder="Enter your full name" class="form_style" type="text" required>
             </div>
             <div class="form_group">
             <label class="sub_title"for="year">Year:</label>

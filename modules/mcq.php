@@ -1,37 +1,46 @@
 <?php
-    // Define the questions and options
-    $questions = array(
-        "What does PHP stand for?",
-        "Which of the following is not a data type in PHP?",
-        "What is the purpose of the 'echo' statement in PHP?",
-        "What is the default port number for HTTP?",
-        "What is the correct syntax for a 'for' loop in PHP?"
-    );
+include_once "questions.php";
 
-    $options = array(
-        array("Personal Home Page", "Hypertext Preprocessor", "Private Home Page", "Public Home Page"),
-        array("Boolean", "String", "Float", "Integer"),
-        array("Prints output to the browser", "Defines a constant", "Declares a variable", "Creates a function"),
-        array("80", "8080", "8081", "8000"),
-        array("for (\$i = 0; \$i < 10; \$i++)", "for (\$i = 1 to 10)", "for (\$i = 0; \$i <= 10; \$i++)", "for (\$i = 10; \$i > 0; \$i--)")
-    );
+// Choose the difficulty level based on the year variable
+$year = $_SESSION["year"];
+// echo "<script> alert('$year');</script>";
+if ($year == 1) {
+    // $selectedQuestions = $easyQuestions;
+    // $selectedOptions = $easyOptions;
+    // echo "<script> alert('in easy question');</script>";
+    $combinedArray = array_combine($easyQuestions, $easyOptions);
+} elseif ($year == 2) {
+    // $selectedQuestions = $mediumQuestions;
+    // $selectedOptions = $mediumOptions;
+    // echo "<script> alert('in medium question');</script>";
+    $combinedArray = array_combine($mediumQuestions, $mediumOptions);
+} elseif ($year == 3) {
+    // $selectedQuestions = $hardQuestions;
+    // $selectedOptions = $hardOptions;
+    // echo "<script> alert('in hard question');</script>";
+    $combinedArray = array_combine($hardQuestions, $hardOptions);
+} else {
+    // Default to easy questions for other cases
+    $combinedArray = array_combine($easyQuestions, $easyOptions);
+}
 
-    // Combine questions and options into an associative array
-    $combinedArray = array_combine($questions, $options);
-    // Shuffle the associative array
-    shuffle_assoc($combinedArray);
+// Shuffle the associative array
+shuffle_assoc($combinedArray);
 
-    // Separate shuffled questions and options
-    $shuffledQuestions = array_keys($combinedArray);
-    $shuffledOptions = array_values($combinedArray);
+// Separate shuffled questions and options
+$shuffledQuestions = array_keys($combinedArray);
+$shuffledOptions = array_values($combinedArray);
 
-    function shuffle_assoc(&$array) {
-        $keys = array_keys($array);
-        shuffle($keys);
-        foreach($keys as $key) {
-            $new[$key] = $array[$key];
-        }
-        $array = $new;
-        return true;
+// Function to shuffle an associative array while maintaining key-value relationships
+function shuffle_assoc(&$array) {
+    $keys = array_keys($array);
+    shuffle($keys);
+    foreach ($keys as $key) {
+        $new[$key] = $array[$key];
     }
+    $array = $new;
+    return true;
+}
+
+
 ?>
