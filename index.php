@@ -33,11 +33,6 @@
                     <option value="3">3<sup>rd</sup></option>
                 </select>
             </div>
-
-            <!-- <div class="form_group">
-                <label class="sub_title" for="email">Email</label>
-                <input placeholder="Enter your email" id="email" class="form_style" type="email">
-            </div> -->
             <div class="form_group">
                 <label class="sub_title" for="password">Password</label>
                 <input name= "password" placeholder="Enter your password" id="password" class="form_style" type="password" required>
@@ -51,26 +46,6 @@
         
     </a></form></div><a class="link" href="">
 </a></div>
-
-    <!-- <form autocomplete="off" method="post" action="">
-        <label for="username">Username:</label>
-        <input autocomplete="false" type="text" name="username" required><br>
-
-        <label for="year">Year:</label>
-        <select name="year" required>
-            <option value="1">1<sup>st</sup></option>
-            <option value="2">2<sup>nd</sup></option>
-            <option value="3">3<sup>rd</sup></option>
-        </select><br>
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
-
-        <label for="licence">Accept Rules : </label>
-        <input type="checkbox" name="licence" required><br>
-
-        <button type="submit">Log In</button>
-    </form> -->
     <?php include_once "modules/footer.php"; ?>
 </body>
 </html>
