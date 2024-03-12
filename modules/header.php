@@ -1,5 +1,4 @@
 <div class="svg-container">
-    <!-- I crated SVG with: https://codepen.io/anthonydugois/pen/mewdyZ -->
     <svg viewbox="0 0 800 400" class="svg">
       <path id="curve" fill="#50c6d8" d="M 800 300 Q 400 350 0 300 L 0 0 L 800 0 L 800 300 Z">
       </path>
@@ -7,9 +6,14 @@
   </div>
 
   <header>
-    <h1>CODE MANIA</h1>
+    <div class="head">
+      <img src=<?php $src = !isset($_SESSION["username"])? "./assets/images/logo/jspm.png" : "../assets/images/logo/jspm.png";echo $src;?> alt="jspm">
+      <center><h1>JSPMs's</h1><br><h1>RAJARSHI SHAHU COLLEGE OF ENGINEERING, POLYTECHINC</h1></center>
+      <img src = <?php $src = !isset($_SESSION["username"])? "./assets/images/logo/rscoe.png" : "../assets/images/logo/rscoe.png";echo $src;?> alt="rscoe">
+    </div>
+    <div class="ino"><img src=<?php $src = !isset($_SESSION["username"])? "./assets/images/inv.jpg" : "../assets/images/inv.jpg";echo $src;?> alt="inovision"><img src=<?php $src = !isset($_SESSION["username"])? "./assets/images/cm.jpg" : "../assets/images/cm.jpg";echo $src;?> alt=""></div>
+    <h1 class="title2 "><img src=<?php $src = !isset($_SESSION["username"])? "./assets/images/cm.jpg" : "../assets/images/cm.jpg";echo $src;?> alt=""></h1>
     <br>
-    <h3>By JSPM's RSCOE POLYTECHNIC <br>COMPUTER DEPARTMENT</h3>
   </header>
 
 <style>
@@ -18,6 +22,44 @@
   margin: 0;
   padding: 0;
   font-family: "Ubuntu", sans-serif;
+}
+
+.head{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.head img{
+  height:7em;
+  mix-blend-mode:darken;
+}
+.ino{
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+}
+.ino img{
+  max-height:20vh;
+  margin: 10px 0;
+  mix-blend-mode:darken;
+}
+
+.title2{
+  display:none;
+}
+.title2 img{
+  max-width: 80%;
+  mix-blend-mode:darken;
+}
+@media only screen and (max-width: 600px) {
+  .ino,.head{
+    display:none;
+  }
+  .title2{
+    margin-top:-40px;
+    display:block;
+  }
 }
 
 .svg-container {
@@ -35,13 +77,6 @@ svg:hover path {
   d: path("M 800 300 Q 400 250 0 300 L 0 0 L 800 0 L 800 300 Z");
 }
 
-/* body {
-  background: #fff;
-  color: #333;
-  font-family: "Ubuntu", sans-serif;
-  position: relative;
-} */
-
 h3 {
   font-weight: 400;
 }
@@ -54,25 +89,6 @@ header {
   text-align: center;
 }
 
-/* main {
-  background: linear-gradient(to bottom, #ffffff 0%, #dddee1 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 10vh 0 80vh;
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-}
-main::after {
-  border-right: 2px dashed #eee;
-  content: "";
-  position: absolute;
-  top: calc(10vh + 1.618em);
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-} */
-
 html, body {
     height: 100%;
     width: 100%;
@@ -84,16 +100,11 @@ footer {
   vertical-align:middle;
   height: 10vh;
   clear: both;
-  /* position: relative; */
-  /* position: absolute; */
-  /* left: 0;
-  bottom: 0; */
   background: #dddee1;
   padding: 5vh 0;
   text-align: center;
   width:100%;
   margin-top:100px;
-  /* position: relative; */
 }
 footer p{
     margin-top:calc(5vh - 1em);
