@@ -109,12 +109,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../js/index.js"></script>
     <?php include_once "header.php"; ?>
     <div id="timer"></div>
-    <div class="profile">
+    <!-- <div class="profile">
         <div class="pro_img">
             <img src="https://robohash.org/<?php echo $_SESSION["username"] ?>" alt="profile">
         </div>
         <p><?php echo htmlspecialchars($_SESSION["username"]); ?></p>
-    </div>
+    </div> -->
 
     <center><h1>Round 2 Program Round</h1>
     <br>
