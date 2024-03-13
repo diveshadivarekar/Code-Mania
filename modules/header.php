@@ -55,7 +55,7 @@
     display:none;
   }
   .title2{
-    margin-top:-40px;
+    margin:-5em 0 -5em 0;
     display:block;
   }
 }
