@@ -40,7 +40,7 @@
 }
 .ino img{
   max-height:30em;
-  margin: -5em 0 -7em 0;
+  margin: -5em 0 -12.5em 0;
 
 }
 
