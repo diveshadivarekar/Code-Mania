@@ -22,13 +22,14 @@
   font-family: "Ubuntu", sans-serif;
 }
 
-.head{
+.head{  
   display:flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
 .head img{
+  max-width:99vh
   height:100em;
   margin: -48em 0;
 
@@ -50,7 +51,7 @@
 .title2 img{
   max-width: 80%;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 679px) {
   .ino,.head{
     display:none;
   }
