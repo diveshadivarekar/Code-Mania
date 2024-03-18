@@ -4,8 +4,8 @@ session_start();
 // Dummy user credentials (replace with your authentication logic)
 // $validUsername = "u";
 // $validPassword = "p";
-$validPassword = array("apple", "banana", "cherry", "date");
-$validPassword2 = array("orange");
+$validPassword = array("rust","python","java");
+$validPassword2 = array("react","mern","node","express");
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

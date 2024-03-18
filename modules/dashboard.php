@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check each answer and calculate the score
     for ($i = 0; $i < count($shuffledQuestions); $i++) {
+        error_reporting(0);
         $answer = $_POST["q" . $i];
         if ($answer == array_search("Hypertext Preprocessor", $shuffledOptions[$i])) {
             $score++;

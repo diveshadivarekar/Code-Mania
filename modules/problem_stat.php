@@ -2,29 +2,29 @@
 
 // Easy C program statements
 $easyStatements = [
-    'Write a program to print "Hello, World!"',
-    'Write a program to add two numbers',
-    'Write a program to find the factorial of a number',
-    'Write a program to check if a number is even or odd',
-    // Add more easy statements as needed
+    "Write a C program to calculate the sum of elements in an array.",
+    "Write a C program to find the largest element in an array.",
+    "Write a C program to reverse a string.",
+    "Write a C program to check whether a number is even or odd.",
+    "Write a C program to swap two numbers."
 ];
 
 // Medium C program statements
 $mediumStatements = [
-    'Write a program to find the sum of elements in an array',
-    'Write a program to reverse a string',
-    'Write a program to check if a string is a palindrome',
-    'Write a program to find the largest element in an array',
-    // Add more medium statements as needed
+    "Write a C program to find the factorial of a number using recursion.",
+    "Write a C program to check whether a given string is a palindrome or not.",
+    "Write a C program to implement the bubble sort algorithm.",
+    "Write a C program to implement the selection sort algorithm.",
+    "Write a C program to find the GCD (Greatest Common Divisor) of two numbers."
 ];
 
 // Hard C program statements
 $hardStatements = [
-    'Write a program for binary search in a sorted array',
-    'Write a program to implement a linked list',
-    'Write a program to perform matrix multiplication',
-    'Write a program to implement quicksort algorithm',
-    // Add more hard statements as needed
+    "Write a C program to implement a stack using arrays and perform push and pop operations.",
+    "Write a C program to implement a queue using arrays and perform enqueue and dequeue operations.",
+    "Write a C program to implement the binary search algorithm.",
+    "Write a C program to implement the quicksort algorithm.",
+    "Write a C program to find the nth Fibonacci number."
 ];
 
 // Function to get a random statement based on the year

@@ -21,7 +21,12 @@ if (isset($_POST["logout"])) {
 <?php
 $year = $_SESSION["year"];
 $problem_stat = getRandomStatement($year);
-$validToken = array("mango");
+$validToken = array("dist","pass","fail");
+
+// all correct = dist
+// partially correct = pass
+// attempted  = fail
+
 // Process the form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $token = $_POST["tok"];
@@ -30,8 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_SESSION["username"];
         $time_taken = $_POST["t"];
 
-
-        $sql = "INSERT INTO program_result (name, year, stat,timeTaken) VALUES ('$name', '$year', '$problem_stat','$time_taken')";
+        if ($token == "dist"){
+            $sql = "INSERT INTO program_result (name, year, stat,timeTaken,token) VALUES ('$name', '$year', '$problem_stat','$time_taken',1)";
+        }elseif($token == "pass"){
+            $sql = "INSERT INTO program_result (name, year, stat,timeTaken,token) VALUES ('$name', '$year', '$problem_stat','$time_taken',2)";
+        }elseif($token == "fail"){
+            $sql = "INSERT INTO program_result (name, year, stat,timeTaken,token) VALUES ('$name', '$year', '$problem_stat','$time_taken',3)";
+        }
+        else{}
         
         if ($conn->query($sql) === TRUE) {
             include_once "header.php";
