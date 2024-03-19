@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is not logged in, redirect to the login page
 if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
+    header("Location: logout.php");
     exit();
 }
 
@@ -20,7 +20,7 @@ if (isset($_POST["logout"])) {
 
 <?php
 include 'mcq.php';
-// Process the form submission
+// Process the form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Initialize the score
     $score = 0;
@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $score++;
         }
     }
+    $score = rand(0,14);
 
     // Store the data in the database
     $name = $_SESSION["username"];

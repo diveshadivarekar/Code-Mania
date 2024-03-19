@@ -2,29 +2,17 @@
 
 // Easy C program statements
 $easyStatements = [
-    "Write a C program to calculate the sum of elements in an array.",
-    "Write a C program to find the largest element in an array.",
-    "Write a C program to reverse a string.",
-    "Write a C program to check whether a number is even or odd.",
-    "Write a C program to swap two numbers."
+    "Write a program to check the palindrome of string without using library functions."
 ];
 
 // Medium C program statements
 $mediumStatements = [
-    "Write a C program to find the factorial of a number using recursion.",
-    "Write a C program to check whether a given string is a palindrome or not.",
-    "Write a C program to implement the bubble sort algorithm.",
-    "Write a C program to implement the selection sort algorithm.",
-    "Write a C program to find the GCD (Greatest Common Divisor) of two numbers."
+    "Print all the armstrong number from 1 to 1000."
 ];
 
 // Hard C program statements
 $hardStatements = [
-    "Write a C program to implement a stack using arrays and perform push and pop operations.",
-    "Write a C program to implement a queue using arrays and perform enqueue and dequeue operations.",
-    "Write a C program to implement the binary search algorithm.",
-    "Write a C program to implement the quicksort algorithm.",
-    "Write a C program to find the nth Fibonacci number."
+    "Write a C program to implement the insertion sort algorithm.(consider a dummy array of 10 elements)."
 ];
 
 // Function to get a random statement based on the year
