@@ -42,10 +42,11 @@
                 <label class="sub_title" for="licence">Accept Rules :  <input type="checkbox" name="licence" required></label>
             </div>
             <button class="btn" type="submit">Log In</button>
-            </a></div><a class="link" href="">
-        
-    </a></form></div><a class="link" href="">
-</a></div>
+            </a></div><a class="link" href=""></a>
+        </form>
+    </div>
+    <a class="link" href=""></a>
+</div>
     <?php include_once "modules/footer.php"; ?>
 </body>
 </html>
